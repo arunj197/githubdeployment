@@ -239,6 +239,8 @@ jobs:
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs ${{ vars.SFDX_PRODUCTION_URL}}'
               shell: bash
               run: |
+                  echo ${{ vars.SFDX_PRODUCTION_URL }}
+              run: |
                   echo ${{ vars.SFDX_PRODUCTION_URL}} > ./SFDX_PRODUCTION_URL.txt
 
             - name: 'Create delta packages for new, modified or deleted metadata'
