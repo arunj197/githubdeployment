@@ -187,7 +187,7 @@
 
 
 # Unique name for this workflow
-name: Deploy master branch to production org ${{ vars.SFDX_PRODUCTION_URL}}
+name: Deploy master branch to production org 
 
 # Definition when the workflow should run
 # Definition when the workflow should run
@@ -215,7 +215,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
             # Install Salesforce CLI
-            - name: 'Install Salesforce CLI'
+            - name: Install Salesforce CLI ${{ vars.SFDX_PRODUCTION_URL}}
               run: |
                   wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
                   mkdir ~/sfdx
