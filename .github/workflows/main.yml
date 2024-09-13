@@ -241,7 +241,7 @@ jobs:
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs ${{ vars.SFDX_PRODUCTION_URL}}'
               shell: bash
               run: |
-                  echo force://3MVG9n_HvETGhr3BaKas0dxC7Ny_v2BOCSFhYOu8rkrdx39hyAo28n9THACz_4.7qcS0lvJ7T8j5_lSAlFKvM:BFCBCB217D2F181F9F910234D9F743769DF0BCFA3BA315CDAC8BAD1D4DB5A1A4:b3ce6a29a8c698836970b055279de9637df248e4f6ee2406bf4c5bf59bc7429177ad29689e76558f39320528797c57d60bfd7e5b11728f99a393d76c9a6d72e95cd754fab9b36ffcb8cde287f864665871bb9532290962903a362dff5e%3Ac22bd704017325eddd394a213252b85d@creative-bear-1tytid-dev-ed.trailblaze.my.salesforce.comte > ./SFDX_PRODUCTION_URL.txt
+                  echo force://PlatformCLI::5Aep861ZBQbtA4s3JVQS_rQi8qBQvZjY8h57yAsdU14TnLaApGAFMmaZYzMGkMdEwPXSiZN8JxbUwJHZRu80abw@creative-bear-1tytid-dev-ed.trailblaze.my.salesforce.com > ./SFDX_PRODUCTION_URL.txt
 
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
