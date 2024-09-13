@@ -234,12 +234,13 @@ jobs:
               uses: actions/checkout@v3
               with:
                 fetch-depth: 0
-
+            - name: 'Populate var'
+              run: |
+                  echo ${{ vars.SFDX_PRODUCTION_URL }}
+                  
             # Store secret for production org
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs ${{ vars.SFDX_PRODUCTION_URL}}'
               shell: bash
-              run: |
-                  echo ${{ vars.SFDX_PRODUCTION_URL }}
               run: |
                   echo ${{ vars.SFDX_PRODUCTION_URL}} > ./SFDX_PRODUCTION_URL.txt
 
