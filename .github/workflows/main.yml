@@ -187,7 +187,7 @@
 
 
 # Unique name for this workflow
-name: Deploy master branch to production org 
+name: Deploy master branch to production org
 
 # Definition when the workflow should run
 # Definition when the workflow should run
@@ -206,6 +206,7 @@ on:
       # when changing non-salesforce files (like this yml file).
       paths:
         - 'force-app/**'
+            
 
 # Jobs to be executed
 jobs:
@@ -214,7 +215,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         steps:
             # Install Salesforce CLI
-            - name: Install Salesforce CLI
+            - name: 'Install Salesforce CLI'
               run: |
                   wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
                   mkdir ~/sfdx
@@ -233,12 +234,12 @@ jobs:
               uses: actions/checkout@v3
               with:
                 fetch-depth: 0
-                  
+
             # Store secret for production org
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs'
               shell: bash
               run: |
-                  echo ${{ vars.DEVORGJSON}} > ./SFDX_PRODUCTION_URL.txt
+                  echo ${{ vars.DEVORGJSON }} > ./SFDX_PRODUCTION_URL.txt
 
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
@@ -250,7 +251,7 @@ jobs:
               run: sfdx auth:sfdxurl:store -f ./SFDX_PRODUCTION_URL.txt -s -a production
 
             - name: 'Deploy the entire branch to Production org'
-              run: sfdx force:source:deploy -p force-app --testlevel NoTestRun --json
+              run: sfdx force:source:deploy -p force-app --testlevel RunLocalTests --json
 
             - name: 'Deploy destructive changes (if any) to Production org'
               run: sfdx force:mdapi:deploy -d "changed-sources/destructiveChanges" --checkonly --ignorewarnings 
