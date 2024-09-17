@@ -4,6 +4,5 @@ public with sharing class FirstController {
         System.debug('Another Debug');
         System.debug('Added Another Debug');
         System.debug('Added Another Debug');
-        System.debug('Added Another Debug 2');
     }
 }
