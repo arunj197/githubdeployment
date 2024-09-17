@@ -239,7 +239,7 @@ jobs:
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs'
               shell: bash
               run: |
-                  echo ${{ vars.DEVORGJSON }} > ./SFDX_PRODUCTION_URL.txt
+                  echo ${{ vars.DEVORGJSON }} > ./SFDX_PRODUCTION_URL.json
 
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
@@ -248,7 +248,7 @@ jobs:
 
             # Authenticate to org
             - name: 'Authenticate to Production Org'
-              run: sfdx auth:sfdxurl:store -f ./SFDX_PRODUCTION_URL.txt -s -a production
+              run: sfdx auth:sfdxurl:store -f ./SFDX_PRODUCTION_URL.json -s -a production
 
             - name: 'Deploy the entire branch to Production org'
               run: sfdx force:source:deploy -p force-app --testlevel RunLocalTests --json
