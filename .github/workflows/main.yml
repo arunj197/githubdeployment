@@ -239,8 +239,6 @@ jobs:
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs'
               shell: bash
               run: |
-                  rm -rf ~/.sf
-                  rm -rf ~/.sfdx
                   echo ${{ secrets.STAGING_URL }} > ./SFDX_PRODUCTION_URL.json
 
             - name: 'Create delta packages for new, modified or deleted metadata'
@@ -248,6 +246,10 @@ jobs:
                   mkdir changed-sources
                   sfdx sgd:source:delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/
 
+            # Logout from org
+            - name: 'Logout from Org'
+              run: sf org logout --target-org production
+              
             # Authenticate to org
             - name: 'Authenticate to Production Org'
               run: sfdx auth:sfdxurl:store -f ./SFDX_PRODUCTION_URL.json -s -a production
