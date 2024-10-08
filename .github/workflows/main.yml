@@ -240,7 +240,7 @@ jobs:
               shell: bash
               run: |
                   echo ${{ vars.VAR_STAGING_URL }} > ./SFDX_PRODUCTION_URL.json
-                  echo PRODUCTION URL JSON File Content jq -c '.' ${{ vars.VAR_STAGING_URL }}
+                  echo PRODUCTION URL JSON File Content ./SFDX_PRODUCTION_URL.json
                   
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
