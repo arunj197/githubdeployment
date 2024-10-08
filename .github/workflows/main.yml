@@ -239,8 +239,8 @@ jobs:
             - name: 'Populate auth file with SFDX_URL secret of the integration and staging orgs'
               shell: bash
               run: |
-                  echo $(echo ${{ vars.VAR_STAGING_URL }} | jq '.[0:4]' | jq -r 'tostring') > ./SFDX_PRODUCTION_URL.json
-                  echo PRODUCTION URL JSON File Content $(echo ${{ vars.VAR_STAGING_URL }} | jq '.[0:4]' | jq -r 'tostring')
+                  echo ${{ vars.VAR_STAGING_URL }} > ./SFDX_PRODUCTION_URL.json
+                  echo PRODUCTION URL JSON File Content (echo jq -c '.' ${{ vars.VAR_STAGING_URL }})
                   
             - name: 'Create delta packages for new, modified or deleted metadata'
               run: | 
